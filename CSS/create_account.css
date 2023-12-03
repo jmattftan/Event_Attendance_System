@@ -1,0 +1,59 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: black;
+  font-family: Roboto, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  color: white;
+  user-select: none;
+  overflow: visible;
+}
+
+.glassmorphism {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: none;
+  padding: 2rem;
+}
+
+.title-left {
+  font-size: 2rem;
+  position: relative;
+}
+.title-left:before {
+  content: "";
+  position: absolute;
+  height: 3px;
+  background-color: white;
+  width: 210px;
+  bottom: -12px;
+}
+
+.form-control,
+.form-select {
+  border-radius: 10px;
+  border: none;
+  box-shadow: none !important;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.btn {
+  border-radius: 50px;
+  border: 0.5px solid whitesmoke;
+}
