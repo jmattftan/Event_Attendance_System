@@ -44,38 +44,53 @@ label,
   font-size: 20px;
 }
 
-.card {
-  border-radius: 10px;
+.btn {
+  border-radius: 50px;
+  border: 0.5px solid whitesmoke;
+}
+
+.accordion-body {
+  overflow: auto;
+}
+
+.dt-button {
   border: none !important;
+  color: white !important;
+  background-color: #212529 !important;
+  border-radius: 10px !important;
+  margin-top: 1rem !important;
+  margin-bottom: 1rem !important;
 }
 
-.card-title {
-  font-weight: bold;
+input[type="search"] {
+  border: 1px solid whitesmoke !important;
+  border-radius: 10px !important;
+  box-shadow: none !important;
 }
 
-.card-text {
-  text-align: justify !important;
+.dataTables_paginate {
+  border: none !important;
+  background-color: #212529 !important;
+  border-radius: 10px !important;
+  color: white !important;
+  margin-top: 1rem !important;
+  margin-bottom: 1rem !important;
 }
 
-.card-list-1 {
-  border-top: 1px solid whitesmoke !important;
-  border-bottom: none !important;
-}
-
-.card-list-2 {
-  border-top: 1px solid whitesmoke !important;
-  border-bottom: 1px solid whitesmoke !important;
-}
-
-.card-list-3 {
-  border-top: none !important;
-  border-bottom: 1px solid whitesmoke !important;
+.paginate_button {
+  border: none !important;
+  border-radius: 10px !important;
+  margin-top: 0.5rem !important;
+  margin-bottom: 0.5rem !important;
+  margin-left: 0.5rem !important;
+  margin-right: 0.5rem !important;
 }
 
 .title-left {
   font-size: 2rem;
   position: relative;
 }
+
 .title-left:before {
   content: "";
   position: absolute;
@@ -101,9 +116,4 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type="number"] {
   -moz-appearance: textfield;
-}
-
-.btn {
-  border-radius: 50px;
-  border: 0.5px solid whitesmoke;
 }
