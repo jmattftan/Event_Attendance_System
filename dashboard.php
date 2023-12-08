@@ -1,3 +1,16 @@
+<?php
+include "PHP/database.php";
+
+session_start();
+
+if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
+    header(
+        "location: http://127.0.0.1:1912/Event_Attendance_System/log_in.php"
+    );
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -43,12 +56,26 @@
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  Matt Tan
+                <?php echo $_SESSION["first_name"] . ' ' . $_SESSION["last_name"] ?>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-dark">
-                  <li><a class="dropdown-item" href="#">My Events</a></li>
                   <li>
-                    <a class="dropdown-item" href="#">Profile Settings</a>
+                    <button
+                      class="dropdown-item my_events"
+                      data-bs-target="#My_Events_ModalToggle"
+                      data-bs-toggle="modal"
+                    >
+                      My Events
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      class="dropdown-item profile_settings"
+                      data-bs-target="#Profile_Settings_ModalToggle"
+                      data-bs-toggle="modal"
+                    >
+                      Profile Settings
+                    </button>
                   </li>
                 </ul>
               </li>
@@ -104,8 +131,20 @@
               </li>
             </ul>
             <div class="card-body text-center">
-              <a href="#" class="card-link text-dark">More Details</a>
-              <a href="#" class="card-link text-dark">Join Event</a>
+              <a
+                class="card-link text-dark"
+                data-bs-target="#More_Details_ModalToggle"
+                data-bs-toggle="modal"
+              >
+                More Details
+              </a>
+              <a
+                class="card-link text-dark"
+                data-bs-target="#Join_Event_ModalToggle"
+                data-bs-toggle="modal"
+              >
+                Join Event
+              </a>
             </div>
           </div>
         </div>
@@ -207,6 +246,137 @@
         </div>
       </div>
     </div>
+
+    <!--Start Modal My Events-->
+    <div
+      class="modal fade text-dark"
+      id="My_Events_ModalToggle"
+      aria-hidden="true"
+      aria-labelledby="ModalToggleLabel"
+      tabindex="-1"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="ModalToggleLabel">My Events</h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">My Events</div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-dark"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--End Modal Events to Handle-->
+
+    <!--Start Modal Profile Settings-->
+    <div
+      class="modal fade text-dark"
+      id="Profile_Settings_ModalToggle"
+      aria-hidden="true"
+      aria-labelledby="ModalToggleLabel"
+      tabindex="-1"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="ModalToggleLabel">
+              Profile Settings
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">Profile Settings</div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-dark">Save Changes</button>
+            <a href="PHP/log_out.php"  type="button" class="btn btn-danger">Log Out</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--End Modal Profile Settings-->
+
+    <!--Start Modal More Details-->
+    <div
+      class="modal fade text-dark"
+      id="More_Details_ModalToggle"
+      aria-hidden="true"
+      aria-labelledby="ModalToggleLabel"
+      tabindex="-1"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="ModalToggleLabel">Event Name</h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">Event Details</div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-dark"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--End Modal More Details-->
+
+    <!--Start Modal Joint Event-->
+    <div
+      class="modal fade text-dark"
+      id="Join_Event_ModalToggle"
+      aria-hidden="true"
+      aria-labelledby="ModalToggleLabel"
+      tabindex="-1"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="ModalToggleLabel">Payment</h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">Payment Details</div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-dark">
+              Pay to Join Event
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--End Modal Join Event-->
   </body>
   <script
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"

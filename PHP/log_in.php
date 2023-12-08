@@ -1,0 +1,59 @@
+<?php
+declare(strict_types=1);
+
+error_reporting(-1);
+ini_set('display_errors', 'true');
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+
+include "database.php";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $email_address = trim($_POST["email_address"]);
+    $password = trim($_POST["password"]);
+
+    $sql = "SELECT first_name, last_name, email_address, password FROM user_account_data WHERE email_address = ?";
+
+    if ($stmt = $mysqli->prepare($sql)) {
+        $stmt->bind_param("s", $param_email_address);
+
+        $param_email_address = $email_address;
+
+        if ($stmt->execute()) {
+            $stmt->store_result();
+
+            if ($stmt->num_rows == 1) {
+                $stmt->bind_result(
+                    $first_name,
+                    $last_name,
+                    $email_address,
+                    $hashed_password
+                );
+
+                if ($stmt->fetch()) {
+                    if (password_verify($password, $hashed_password)) {
+                        session_start();
+
+                        $_SESSION["loggedin"] = true;
+                        $_SESSION["first_name"] = $first_name;
+                        $_SESSION["last_name"] = $last_name;
+                        $_SESSION["email_address"] = $last_name;
+                        $_SESSION["password"] = $hashed_password;
+
+                        header(
+                            "location: http://127.0.0.1:1912/Event_Attendance_System/dashboard.php"
+                        );
+                    } else {
+                        header(
+                            "location: http://127.0.0.1:1912/Event_Attendance_System/lp.html"
+                        );
+                    }
+                }
+            } else {
+                header(
+                    "location: http://127.0.0.1:1912/Event_Attendance_System/lo.html"
+                );
+            }
+        }
+    }
+}
+?>

@@ -1,3 +1,15 @@
+<?php
+
+session_start();
+
+// Check if the user is already logged in, if yes then redirect him to main page
+if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
+  header("location: http://127.0.0.1:1912/Event_Attendance_System/dashboard.php");
+  exit;
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -37,7 +49,7 @@
                       src="Lottie/animation.json"
                       background="transparent"
                       speed="1"
-                      style="width: 200px; height: 200px"
+                      style="width: 200px; height: 200px;"
                       autoplay
                       loop
                     ></lottie-player>
@@ -45,43 +57,54 @@
                   <h2 class="text-center mb-5">EVENTWING</h2>
                 </div>
               </div>
+
               <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                <h2 class="mt-3 mb-3 ms-2 title-left">Log In</h2>
-                <label class="mt-3 ms-2">Email Address</label>
-                <div class="form-floating mt-1 mb-2">
-                  <input
-                    type="email"
-                    class="form-control"
-                    id=""
-                    placeholder=""
-                    required
-                  />
-                  <label>Enter Email address</label>
-                </div>
-                <label class="mt-3 ms-2">Password</label>
-                <div class="form-floating mt-1 mb-2">
-                  <input
-                    type="password"
-                    class="form-control"
-                    id=""
-                    placeholder=""
-                    required
-                  />
-                  <label>Enter Password</label>
-                </div>
-                <div class="text-end">
-                  <button
-                    type="button"
-                    class="btn btn-outline-light mt-3 mb-2 w-50"
-                  >
-                    Log In
-                  </button>
-                </div>
+                <form
+                  action="http://127.0.0.1:1912/Event_Attendance_System/PHP/log_in.php"
+                  id="log_in_account_form"
+                  method="POST"
+                >
+                  <h2 class="mt-3 mb-3 ms-2 title-left">Log In</h2>
+                  <label class="mt-3 ms-2">Email Address</label>
+                  <div class="form-floating mt-1 mb-2">
+                    <input
+                      id="email_address"
+                      name="email_address"
+                      type="email"
+                      class="form-control"
+                      placeholder=""
+                      required
+                    />
+                    <label>Enter Email address</label>
+                  </div>
+                  <label class="mt-3 ms-2">Password</label>
+                  <div class="form-floating mt-1 mb-2">
+                    <input
+                      id="password"
+                      name="password"
+                      type="password"
+                      class="form-control"
+                      placeholder=""
+                      required
+                    />
+                    <label>Enter Password</label>
+                  </div>
+                  <div class="text-end">
+                    <button
+                      type="submit"
+                      class="btn btn-outline-light mt-3 mb-2 w-50"
+                    >
+                      Log In
+                    </button>
+                  </div>
+                </form>
               </div>
             </div>
           </div>
           <div class="text-center mt-3 mb-2">
-            <a class="text-white" href="create_account.php">Create Account?</a>
+            <a class="text-white" href="create_user_account.php"
+              >Create Account?</a
+            >
             <a>•</a>
             <a class="text-white" href="forgot_password.php"
               >Forgot Password?</a
