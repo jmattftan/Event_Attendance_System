@@ -306,7 +306,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
           <div class="modal-body">Profile Settings</div>
           <div class="modal-footer">
             <button type="button" class="btn btn-dark">Save Changes</button>
-            <a href="PHP/log_out.php"  type="button" class="btn btn-danger">Log Out</a>
+            <a href="PHP/log_out.php" type="button" class="btn btn-danger">Log Out</a>
           </div>
         </div>
       </div>

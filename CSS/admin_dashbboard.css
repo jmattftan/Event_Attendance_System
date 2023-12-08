@@ -86,7 +86,15 @@ input[type="search"] {
   margin-right: 0.5rem !important;
 }
 
-.title-left {
+.modal-body {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border: 1px solid whitesmoke;
+}
+
+.title-left,
+.title-left-two,
+.title-left-three {
   font-size: 2rem;
   position: relative;
 }
@@ -96,7 +104,25 @@ input[type="search"] {
   position: absolute;
   height: 3px;
   background-color: white;
-  width: 210px;
+  width: 175px;
+  bottom: -12px;
+}
+
+.title-left-two:before {
+  content: "";
+  position: absolute;
+  height: 3px;
+  background-color: white;
+  width: 295px;
+  bottom: -12px;
+}
+
+.title-left-three:before {
+  content: "";
+  position: absolute;
+  height: 3px;
+  background-color: white;
+  width: 310px;
   bottom: -12px;
 }
 

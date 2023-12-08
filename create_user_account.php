@@ -60,7 +60,7 @@
                     class="form-control form-control-md"
                     type="text"
                     placeholder="Enter Last Name"
-                    onkeypress="return /[a-z]/i.test(event.key)"
+                    onkeypress="return /[a-z ]/i.test(event.key)"
                     required
                   />
                 </div>
@@ -72,7 +72,7 @@
                     class="form-control form-control-md"
                     type="text"
                     placeholder="Enter First Name"
-                    onkeypress="return /[a-z]/i.test(event.key)"
+                    onkeypress="return /[a-z ]/i.test(event.key)"
                     required
                   />
                 </div>
@@ -86,7 +86,7 @@
                     class="form-control form-control-md"
                     type="text"
                     placeholder="Enter Middle Name"
-                    onkeypress="return /[a-z]/i.test(event.key)"
+                    onkeypress="return /[a-z ]/i.test(event.key)"
                     required
                   />
                 </div>
@@ -175,10 +175,11 @@
                     id="contact_number"
                     name="contact_number"
                     class="form-control form-control-md"
-                    type="number"
+                    type="text"
+                    placeholder="Enter Contact Number"
                     minlength="11"
                     maxlength="11"
-                    placeholder="Enter Contact Number"
+                    onkeypress="return /[0-9]/i.test(event.key)"
                     required
                   />
                 </div>
