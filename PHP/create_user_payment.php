@@ -25,8 +25,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     $payment_method = "Cash";
+    $attendance = 0;
 
-    $sql = "INSERT INTO user_payment_data (event_purchaser, event_id, event_name, amount, payment_method) VALUES ('$event_purchaser', '$event_id', '$event_name', '$amount', '$payment_method')";
+    $sql = "INSERT INTO user_payment_data (event_purchaser, event_id, event_name, amount, payment_method, attendance) VALUES ('$event_purchaser', '$event_id', '$event_name', '$amount', '$payment_method', '$attendance')";
     $query_run = mysqli_query($mysqli, $sql);
 
     if ($query_run) {
@@ -35,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mysqli->query("ALTER TABLE user_payment_data AUTO_INCREMENT = 1;");
 
         header(
-            "location: http://127.0.0.1:1912/Event_Attendance_System/admin_dashboard.html"
+            "location: http://127.0.0.1:1912/Event_Attendance_System/admin_dashboard.php"
         );
     } else {
         echo "Something went wrong. Please try again later.";

@@ -56,7 +56,9 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                <?php echo $_SESSION["first_name"] . ' ' . $_SESSION["last_name"] ?>
+                <?php echo $_SESSION["first_name"] .
+                    " " .
+                    $_SESSION["last_name"]; ?>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-dark">
                   <li>
@@ -86,48 +88,90 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
       <div class="row text-center mt-3 mb-2">
         <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 mt-3 mb-2">
           <div class="glassmorphism p-2">
-            <label class="mt-1 mb-1">NO. OF USERS</label>
-            <div class="number mt-1 mb-1"><h1>50</h1></div>
+            <label class="mt-1 mb-1">TOTAL NO. OF USERS</label>
+            <?php
+            $sql = "SELECT * FROM user_account_data";
+            $result = $mysqli->query($sql);
+
+            $total_user_account = $result->num_rows;
+            ?>  
+            <div class="number mt-1 mb-1"><h1><?php echo $total_user_account; ?></h1></div>
           </div>
         </div>
         <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 mt-3 mb-2">
           <div class="glassmorphism p-2">
-            <label class="mt-1 mb-1">NO. OF EVENTS</label>
-            <div class="number mt-1 mb-1"><h1>40</h1></div>
+            <label class="mt-1 mb-1">TOTAL NO. OF EVENTS</label>
+            <?php
+            $sql = "SELECT * FROM event_data";
+            $result = $mysqli->query($sql);
+
+            $total_event = $result->num_rows;
+            ?>              
+            <div class="number mt-1 mb-1"><h1><?php echo $total_event; ?></h1></div>
           </div>
         </div>
         <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 mt-3 mb-2">
           <div class="glassmorphism p-2">
-            <label class="mt-1 mb-1">NO. OF UPCOMING EVENTS</label>
-            <div class="number mt-1 mb-1"><h1>30</h1></div>
+            <label class="mt-1 mb-1">TOTAL NO. OF UPCOMING EVENTS</label>
+            <?php
+            $current_date = date("Y-m-d");
+
+            $sql = "SELECT * FROM  event_data WHERE event_date > '$current_date'";
+            $result = $mysqli->query($sql);
+
+            $total_upcoming_event = $result->num_rows;
+            ?>  
+            <div class="number mt-1 mb-1"><h1><?php echo $total_upcoming_event; ?></h1></div>
           </div>
         </div>
       </div>
       <div class="row text-start mt-3 mb-2">
+      <?php
+      $sql = "SELECT * FROM event_data";
+      $result = $mysqli->query($sql);
+
+      if ($result->num_rows > 0) {
+          // output data of each row
+          while ($row = $result->fetch_assoc()) {
+
+              $event_id = $row["event_id"];
+              $event_name = $row["event_name"];
+              $event_description = $row["event_description"];
+              $event_type = $row["event_type"];
+              $event_date = $row["event_date"];
+              $event_start_time = $row["event_start_time"];
+              $event_end_time = $row["event_end_time"];
+              $event_location = $row["event_location"];
+              $event_speaker = $row["event_speaker"];
+              $event_handler = $row["event_handler"];
+              $event_cost = $row["event_cost"];
+              $event_created = $row["event_created"];
+              $event_updated = $row["event_updated"];
+              ?>  
         <div
-          class="col-sm-12 col-md-12 col-lg-3 col-xl-3 mt-3 mb-2 d-flex justify-content-center"
+          class="col-sm-12 col-md-6 col-lg-3 col-xl-3 mt-3 mb-2 d-flex justify-content-center"
         >
           <div class="card" style="width: 18rem">
+          <!--
             <img
               src="Photos/arduino_workshop.jpg"
               class="card-img-top"
               alt="..."
             />
+            -->
             <div class="card-body">
-              <h5 class="card-title">Arduino Workshop</h5>
+              <h5 class="card-title"><?php echo $event_name; ?></h5>
               <p class="card-text">
-                In the Arduino Workshop, the speaker will be discussing all the
-                basic knowledge that will help you create your first Ardiuno
-                Project specifically I2C connections.
+              <?php echo $event_description; ?>
               </p>
             </div>
             <ul class="list-group list-group-flush">
-              <li class="card-list-1 list-group-item">Speaker: James Tan</li>
+              <li class="card-list-1 list-group-item">Event Speaker: <?php echo $event_speaker; ?></li>
               <li class="card-list-2 list-group-item">
-                When: December 11, 2023, 12:00 PM
+                When: <?php echo $event_date . " " . $event_start_time; ?>
               </li>
               <li class="card-list-3 list-group-item">
-                Where: University of the East Manila
+                Where: <?php echo $event_location; ?>
               </li>
             </ul>
             <div class="card-body text-center">
@@ -148,235 +192,13 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
             </div>
           </div>
         </div>
-        <div
-          class="col-sm-12 col-md-12 col-lg-3 col-xl-3 mt-3 mb-2 d-flex justify-content-center"
-        >
-          <div class="card" style="width: 18rem">
-            <img
-              src="Photos/arduino_workshop.jpg"
-              class="card-img-top"
-              alt="..."
-            />
-            <div class="card-body">
-              <h5 class="card-title">Arduino Workshop</h5>
-              <p class="card-text">
-                In the Arduino Workshop, the speaker will be discussing all the
-                basic knowledge that will help you create your first Ardiuno
-                Project specifically I2C connections.
-              </p>
-            </div>
-            <ul class="list-group list-group-flush">
-              <li class="card-list-1 list-group-item">Speaker: James Tan</li>
-              <li class="card-list-2 list-group-item">
-                When: December 11, 2023, 12:00 PM
-              </li>
-              <li class="card-list-3 list-group-item">
-                Where: University of the East Manila
-              </li>
-            </ul>
-            <div class="card-body text-center">
-              <a href="#" class="card-link text-dark">More Details</a>
-              <a href="#" class="card-link text-dark">Join Event</a>
-            </div>
-          </div>
-        </div>
-        <div
-          class="col-sm-12 col-md-12 col-lg-3 col-xl-3 mt-3 mb-2 d-flex justify-content-center"
-        >
-          <div class="card" style="width: 18rem">
-            <img
-              src="Photos/arduino_workshop.jpg"
-              class="card-img-top"
-              alt="..."
-            />
-            <div class="card-body">
-              <h5 class="card-title">Arduino Workshop</h5>
-              <p class="card-text">
-                In the Arduino Workshop, the speaker will be discussing all the
-                basic knowledge that will help you create your first Ardiuno
-                Project specifically I2C connections.
-              </p>
-            </div>
-            <ul class="list-group list-group-flush">
-              <li class="card-list-1 list-group-item">Speaker: James Tan</li>
-              <li class="card-list-2 list-group-item">
-                When: December 11, 2023, 12:00 PM
-              </li>
-              <li class="card-list-3 list-group-item">
-                Where: University of the East Manila
-              </li>
-            </ul>
-            <div class="card-body text-center">
-              <a href="#" class="card-link text-dark">More Details</a>
-              <a href="#" class="card-link text-dark">Join Event</a>
-            </div>
-          </div>
-        </div>
-        <div
-          class="col-sm-12 col-md-12 col-lg-3 col-xl-3 mt-3 mb-2 d-flex justify-content-center"
-        >
-          <div class="card" style="width: 18rem">
-            <img
-              src="Photos/arduino_workshop.jpg"
-              class="card-img-top"
-              alt="..."
-            />
-            <div class="card-body">
-              <h5 class="card-title">Arduino Workshop</h5>
-              <p class="card-text">
-                In the Arduino Workshop, the speaker will be discussing all the
-                basic knowledge that will help you create your first Ardiuno
-                Project specifically I2C connections.
-              </p>
-            </div>
-            <ul class="list-group list-group-flush">
-              <li class="card-list-1 list-group-item">Speaker: James Tan</li>
-              <li class="card-list-2 list-group-item">
-                When: December 11, 2023, 12:00 PM
-              </li>
-              <li class="card-list-3 list-group-item">
-                Where: University of the East Manila
-              </li>
-            </ul>
-            <div class="card-body text-center">
-              <a href="#" class="card-link text-dark">More Details</a>
-              <a href="#" class="card-link text-dark">Join Event</a>
-            </div>
-          </div>
-        </div>
+      <?php
+          }
+      }
+      ?>  
       </div>
     </div>
-
-    <!--Start Modal My Events-->
-    <div
-      class="modal fade text-dark"
-      id="My_Events_ModalToggle"
-      aria-hidden="true"
-      aria-labelledby="ModalToggleLabel"
-      tabindex="-1"
-    >
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="ModalToggleLabel">My Events</h1>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">My Events</div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-dark"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            >
-              Close
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!--End Modal Events to Handle-->
-
-    <!--Start Modal Profile Settings-->
-    <div
-      class="modal fade text-dark"
-      id="Profile_Settings_ModalToggle"
-      aria-hidden="true"
-      aria-labelledby="ModalToggleLabel"
-      tabindex="-1"
-    >
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="ModalToggleLabel">
-              Profile Settings
-            </h1>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">Profile Settings</div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-dark">Save Changes</button>
-            <a href="PHP/log_out.php" type="button" class="btn btn-danger">Log Out</a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!--End Modal Profile Settings-->
-
-    <!--Start Modal More Details-->
-    <div
-      class="modal fade text-dark"
-      id="More_Details_ModalToggle"
-      aria-hidden="true"
-      aria-labelledby="ModalToggleLabel"
-      tabindex="-1"
-    >
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="ModalToggleLabel">Event Name</h1>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">Event Details</div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-dark"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            >
-              Close
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!--End Modal More Details-->
-
-    <!--Start Modal Joint Event-->
-    <div
-      class="modal fade text-dark"
-      id="Join_Event_ModalToggle"
-      aria-hidden="true"
-      aria-labelledby="ModalToggleLabel"
-      tabindex="-1"
-    >
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="ModalToggleLabel">Payment</h1>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">Payment Details</div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-dark">
-              Pay to Join Event
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!--End Modal Join Event-->
+    <?php include "PHP/dashboard_modals.php" ?>
   </body>
   <script
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"

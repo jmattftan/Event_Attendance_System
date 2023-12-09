@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mysqli->query("ALTER TABLE admin_account_data AUTO_INCREMENT = 1;");
 
         header(
-            "location: http://127.0.0.1:1912/Event_Attendance_System/admin_dashboard.html"
+            "location: http://127.0.0.1:1912/Event_Attendance_System/admin_dashboard.php"
         );
     } else {
         echo "Something went wrong. Please try again later.";

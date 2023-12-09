@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email_address = trim($_POST["email_address"]);
     $password = trim($_POST["password"]);
 
-    $sql = "SELECT first_name, last_name, email_address, password FROM user_account_data WHERE email_address = ?";
+    $sql = "SELECT first_name, last_name, email_address, password FROM admin_account_data WHERE email_address = ?";
 
     if ($stmt = $mysqli->prepare($sql)) {
         $stmt->bind_param("s", $param_email_address);
@@ -40,17 +40,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         $_SESSION["password"] = $hashed_password;
 
                         header(
-                            "location: http://127.0.0.1:1912/Event_Attendance_System/dashboard.php"
+                            "location: http://127.0.0.1:1912/Event_Attendance_System/admin_dashboard.php"
                         );
                     } else {
                         header(
-                            "location: http://127.0.0.1:1912/Event_Attendance_System/log_in.php"
+                            "location: http://127.0.0.1:1912/Event_Attendance_System/admin_log_in.php"
                         );
                     }
                 }
             } else {
                 header(
-                    "location: http://127.0.0.1:1912/Event_Attendance_System/log_in.php"
+                    "location: http://127.0.0.1:1912/Event_Attendance_System/admin_log_in.php"
                 );
             }
         }
