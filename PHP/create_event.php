@@ -8,7 +8,7 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 include "database.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $event_name = trim($_POST["event_name"]);
+    $event_name = trim($_POST["event_name_event"]);
     $event_description = trim($_POST["event_description"]);
     $event_type = trim($_POST["event_type"]);
     $event_date= trim($_POST["event_date"]);

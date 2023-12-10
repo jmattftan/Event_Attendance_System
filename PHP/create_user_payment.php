@@ -9,7 +9,7 @@ include "database.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $event_purchaser = trim($_POST["event_purchaser"]);
-    $event_name = trim($_POST["event_name"]);
+    $event_name = trim($_POST["event_name_user_payment"]);
 
     $sql = "SELECT * FROM event_data WHERE event_name = '$event_name'";
     $result = $mysqli->query($sql);
@@ -24,10 +24,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo "0 results";
     }
 
+    date_default_timezone_set("Asia/Manila");
+    $year = date("Y");
+    $month = date("m");
+    $day = date("d");
+    $hour = date("h");
+    $minute = date("i");
+    $seconds =  date("s");
+    $user_payment_id = $seconds.$year.$month.$day.$hour.$minute;
+
     $payment_method = "Cash";
     $attendance = 0;
 
-    $sql = "INSERT INTO user_payment_data (event_purchaser, event_id, event_name, amount, payment_method, attendance) VALUES ('$event_purchaser', '$event_id', '$event_name', '$amount', '$payment_method', '$attendance')";
+    $sql = "INSERT INTO user_payment_data (user_payment_id, event_purchaser, event_id, event_name, amount, payment_method, attendance) VALUES ('$user_payment_id', '$event_purchaser', '$event_id', '$event_name', '$amount', '$payment_method', '$attendance')";
     $query_run = mysqli_query($mysqli, $sql);
 
     if ($query_run) {

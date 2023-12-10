@@ -68,22 +68,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                 </button>
                 <ul class="dropdown-menu dropdown-menu-dark">
                   <li>
-                    <button
-                      class="dropdown-item events_to_handle"
-                      data-bs-target="#Events_to_Handle_ModalToggle"
-                      data-bs-toggle="modal"
-                    >
-                      Events to Handle
-                    </button>
-                  </li>
-                  <li>
-                    <button
-                      class="dropdown-item profile_settings"
-                      data-bs-target="#Profile_Settings_ModalToggle"
-                      data-bs-toggle="modal"
-                    >
-                      Profile Settings
-                    </button>
+                    <a href="PHP/admin_log_out.php" class="dropdown-item bg-danger">Log Out</a>
                   </li>
                 </ul>
               </li>
@@ -170,14 +155,15 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                         <th>Event Name</th>
                         <th>Event Type</th>
                         <th>Event Date</th>
-                        <th>Event Start</th>
-                        <th>Event End</th>
+                        <th>Event Start Time</th>
+                        <th>Event End Time</th>
                         <th>Event Location</th>
                         <th>Event Speaker</th>
                         <th>Event Handler</th>
                         <th>Event Cost</th>
                         <th>Event Created</th>
                         <th>Event Updated</th>
+                        <th style="display: none">Event Description</th>
                         <th>Action</th>
                       </tr>
                     </thead>
@@ -202,6 +188,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                            $event_cost = $row["event_cost"];
                            $event_created = $row["event_created"];
                            $event_updated = $row["event_updated"];
+                           $event_description = $row["event_description"];
                            ?>                        
                       <tr>
                         <td><?php echo $event_id; ?></td>
@@ -216,15 +203,16 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                         <td><?php echo $event_cost; ?></td>
                         <td><?php echo $event_created; ?></td>
                         <td><?php echo $event_updated; ?></td>
+                        <td style="display: none"><?php echo $event_description; ?></td>
                         <td class="d-flex justify-content-center">
                           <button
-                            class="btn btn-dark bi bi-people-fill user_account_button_action ms-1 me-1"
+                            class="btn btn-dark bi bi-people-fill event_attendance_button_action ms-1 me-1"
                             data-bs-target="#Event_Attendance_ModalToggle"
                             data-bs-toggle="modal"
                           ></button>
                           <button
-                            class="btn btn-dark bi bi-gear-fill user_account_button_action ms-1 me-1"
-                            data-bs-target="#Event_ModalToggle"
+                            class="btn btn-dark bi bi-gear-fill update_event_button_action ms-1 me-1"
+                            data-bs-target="#Update_Event_ModalToggle"
                             data-bs-toggle="modal"
                           ></button>
                         </td>
@@ -364,6 +352,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                   >
                     <thead>
                       <tr>
+                        <th>User Payment ID</th>
                         <th>Event Purchaser</th>
                         <th>Event ID</th>
                         <th>Event Name</th>
@@ -382,7 +371,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                    if ($result->num_rows > 0) {
                        // output data of each row
                        while ($row = $result->fetch_assoc()) {
-
+                           $user_payment_id = $row["user_payment_id"];
                            $event_purchaser = $row["event_purchaser"];
                            $event_id = $row["event_id"];
                            $event_name = $row["event_name"];
@@ -392,6 +381,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                            $user_payment_updated = $row["user_payment_updated"];
                            ?>
                       <tr>
+                        <td><?php echo $user_payment_id; ?></td>
                         <td><?php echo $event_purchaser; ?></td>
                         <td><?php echo $event_id; ?></td>
                         <td><?php echo $event_name; ?></td>
@@ -403,7 +393,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                           <div class="text-center">
                             <button
                               class="btn btn-dark bi bi-gear-fill user_payment_button_action"
-                              data-bs-target="#User_Payment_ModalToggle"
+                              data-bs-target="#Update_User_Payment_ModalToggle"
                               data-bs-toggle="modal"
                             ></button>
                           </div>
@@ -538,4 +528,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
   <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
   <script src="Javascript/datatables.js"></script>
+  <script src="Javascript/event_update_delete.js"></script>
+  <script src="Javascript/user_payment_update_delete.js"></script>
+  <script src="Javascript/admin_update_delete.js"></script>
 </html> 
