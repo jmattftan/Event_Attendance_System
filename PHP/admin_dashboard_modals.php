@@ -284,6 +284,11 @@
 >
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
+      <form
+        action="http://127.0.0.1:1912/Event_Attendance_System/PHP/update_user_payment.php"
+        id="update_admin_form"
+        method="POST"
+      >       
         <div class="modal-body bg-dark">
           <div class="row">
             <h2 class="mt-3 mb-3 ms-2 ">
@@ -291,6 +296,11 @@
             </h2>
           </div>
           <div class="row mt-3 mb-2">
+              <input
+                id="update_user_payment_id"
+                name="update_user_payment_id"
+                style="display: none"
+              />               
             <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-2 mb-2">
               <label class="mb-1 ms-2">Event Purchaser</label>
               <select
@@ -353,12 +363,14 @@
           class="btn btn-dark d-flex justify-content-between align-items-center"
           data-bs-target="#Delete_User_Payment_ModalToggle2"
           data-bs-toggle="modal"
+          type="button"          
         >
           <span>Delete User Payment</span>
           <span class="ms-1 bi bi-arrow-right-circle"></span>
         </button>
-        <button type="button" class="btn btn-dark">Save Changes</button>
+        <button type="submit" class="btn btn-dark">Save Changes</button>
       </div>
+      </form>
     </div>
   </div>
 </div>
@@ -371,6 +383,11 @@
 >
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
+      <form
+        action="http://127.0.0.1:1912/Event_Attendance_System/PHP/delete_user_payment.php"
+        id="update_admin_form"
+        method="POST"
+      >        
       <div class="modal-body bg-dark">
         <div class="row">
           <h2 class="mt-3 mb-3 ms-2 ">Delete User Payment</h2>
@@ -383,11 +400,13 @@
           class="btn btn-dark bi bi-arrow-left-circle"
           data-bs-target="#Update_User_Payment_ModalToggle"
           data-bs-toggle="modal"
+          type="button"
         >
           Update User Payment
         </button>
-        <button type="button" class="btn btn-danger">Delete Payment</button>
+        <button type="submit" class="btn btn-danger">Delete Payment</button>
       </div>
+      </form>
     </div>
   </div>
 </div>
@@ -403,6 +422,11 @@
 >
   <div class="modal-dialog modal-xl modal-dialog-centered">
     <div class="modal-content">
+      <form
+        action="http://127.0.0.1:1912/Event_Attendance_System/PHP/update_admin.php"
+        id="update_admin_form"
+        method="POST"
+      >      
         <div class="modal-body bg-dark">
           <div class="row">
             <h2 class="mt-3 mb-3 ms-2 -three">
@@ -410,6 +434,11 @@
             </h2>
           </div>
           <div class="row mt-3 mb-2">
+              <input
+                id="update_admin_number_admin"
+                name="update_admin_number_admin"
+                style="display: none"
+              />          
             <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 mt-2 mb-2">
               <label class="mb-1 ms-2">Last Name</label>
               <input
@@ -502,7 +531,7 @@
                 class="form-control form-control-md"
                 type="password"
                 placeholder="Enter Password"
-                required
+
               />
             </div>
             <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 mt-2 mb-2">
@@ -513,7 +542,7 @@
                 class="form-control form-control-md"
                 type="password"
                 placeholder="Enter Confirm Password"
-                required
+
               />
             </div>
           </div>
@@ -523,12 +552,14 @@
           class="btn btn-dark d-flex justify-content-between align-items-center"
           data-bs-target="#Admin_Account_ModalToggle2"
           data-bs-toggle="modal"
+          type="button"
         >
           <span>Delete Admin Account</span>
           <span class="ms-1 bi bi-arrow-right-circle"></span>
         </button>
-        <button type="button" class="btn btn-dark">Save Changes</button>
+        <button type="submit" class="btn btn-dark">Save Changes</button>
       </div>
+      </form>
     </div>
   </div>
 </div>
@@ -541,20 +572,27 @@
 >
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
+      <form
+        action="http://127.0.0.1:1912/Event_Attendance_System/PHP/delete_admin.php"
+        id="delete_admin_form"
+        method="POST"
+      >
       <div class="modal-body bg-dark">
         <p name="delete_admin" id="delete_admin" class="mt-3 mb-3 ms-2" style="font-weight: bold;"></p>
-        <input name="delete_admin_number" id="delete_admin_number" class="mt-3 mb-3" style="display: none;"/>
+        <input name="delete_admin_number_admin" id="delete_admin_number_admin" class="mt-3 mb-3" style="display: none;"/>
       </div>
       <div class="modal-footer">
         <button
           class="btn btn-dark bi bi-arrow-left-circle"
           data-bs-target="#Admin_Account_ModalToggle"
           data-bs-toggle="modal"
+          type="button"
         >
           Update Admin Account
         </button>
-        <button type="button" class="btn btn-danger">Delete Account</button>
+        <button type="submit" class="btn btn-danger">Delete Account</button>
       </div>
+      </form>
     </div>
   </div>
 </div>

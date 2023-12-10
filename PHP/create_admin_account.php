@@ -8,14 +8,14 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 include "database.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $last_name = trim($_POST["last_name"]);
-    $first_name= trim($_POST["first_name"]);
-    $middle_name = trim($_POST["middle_name"]);
-    $date_of_birth= trim($_POST["date_of_birth"]);
-    $sex = trim($_POST["sex"]);
-    $contact_number = trim($_POST["contact_number"]);
-    $email_address = trim($_POST["email_address"]);
-    $password = trim($_POST["password"]);
+    $last_name = trim($_POST["last_name_admin"]);
+    $first_name= trim($_POST["first_name_admin"]);
+    $middle_name = trim($_POST["middle_name_admin"]);
+    $date_of_birth= trim($_POST["date_of_birth_admin"]);
+    $sex = trim($_POST["sex_admin"]);
+    $contact_number = trim($_POST["contact_number_admin"]);
+    $email_address = trim($_POST["email_address_admin"]);
+    $password = trim($_POST["password_admin"]);
     $encrypted_password = password_hash($password, PASSWORD_DEFAULT);
 
     date_default_timezone_set("Asia/Manila");

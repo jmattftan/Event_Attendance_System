@@ -14,6 +14,7 @@ $(document).ready(function () {
       email_address: tds.eq(7).text(),
     };
 
+    $("#update_admin_number_admin").val(data.admin_number);
     $("#update_last_name_admin").val(data.last_name);
     $("#update_first_name_admin").val(data.first_name);
     $("#update_middle_name_admin").val(data.middle_name);
@@ -26,6 +27,6 @@ $(document).ready(function () {
     document.getElementById("delete_admin").innerHTML =
       "Delete Admin: " + admin_name + "?";
 
-    $("#delete_admin_number").val(data.admin_number);
+    $("#delete_admin_number_admin").val(data.admin_number);
   });
 });

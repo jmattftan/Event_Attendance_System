@@ -9,6 +9,7 @@ $(document).ready(function () {
       event_name: tds.eq(3).text(),
     };
 
+    $("#update_user_payment_id").val(data.user_payment_id);
     $("#update_event_purchaser").val(data.event_purchaser);
     $("#update_event_name_user_payment").val(data.event_name);
 
