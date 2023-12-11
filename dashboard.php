@@ -63,15 +63,6 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                 <ul class="dropdown-menu dropdown-menu-dark">
                   <li>
                     <button
-                      class="dropdown-item my_events"
-                      data-bs-target="#My_Events_ModalToggle"
-                      data-bs-toggle="modal"
-                    >
-                      My Events
-                    </button>
-                  </li>
-                  <li>
-                    <button
                       class="dropdown-item profile_settings"
                       data-bs-target="#Profile_Settings_ModalToggle"
                       data-bs-toggle="modal"
@@ -175,20 +166,20 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
               </li>
             </ul>
             <div class="card-body text-center">
-              <a
-                class="card-link text-dark"
-                data-bs-target="#More_Details_ModalToggle"
-                data-bs-toggle="modal"
-              >
-                More Details
-              </a>
-              <a
-                class="card-link text-dark"
-                data-bs-target="#Join_Event_ModalToggle"
-                data-bs-toggle="modal"
+          <form
+          action="http://127.0.0.1:1912/Event_Attendance_System/PHP/join_event.php"
+          id="update_user_payment_form"
+          method="POST"
+          >               
+              <input type="text" name="event_id_user_payment" value="<?php echo $event_id ?>">
+              <input type="text" name="event_purchaser" value="<?php echo $_SESSION["first_name"] ." " . $_SESSION["last_name"]; ?>">
+              <button
+                class="text-dark"
+                type="submit"
               >
                 Join Event
-              </a>
+              </button>
+          </form>
             </div>
           </div>
         </div>

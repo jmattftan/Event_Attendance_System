@@ -262,7 +262,6 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                         <th>Email Address</th>
                         <th>User Account Created</th>
                         <th>User Account Updated</th>
-                        <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -300,15 +299,6 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                         <td><?php echo $email_address; ?></td>
                         <td><?php echo $user_account_created; ?></td>
                         <td><?php echo $user_account_updated; ?></td>
-                        <td class="d-flex justify-content-center">
-                          <div class="text-center">
-                            <button
-                              class="btn btn-dark bi bi-gear-fill user_account_button_action"
-                              data-bs-target="#User_Account_ModalToggle"
-                              data-bs-toggle="modal"
-                            ></button>
-                          </div>
-                        </td>
                       </tr>
                       <?php
                        }

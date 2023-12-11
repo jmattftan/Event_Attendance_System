@@ -204,6 +204,7 @@
                     class="form-control form-control-md"
                     type="password"
                     placeholder="Enter Password"
+                    onchange="if(this.checkValidity()) form.confirm_password.pattern = this.value;"
                     required
                   />
                 </div>
@@ -215,6 +216,7 @@
                     class="form-control form-control-md"
                     type="password"
                     placeholder="Enter Confirm Password"
+                    onchange="if(this.checkValidity()) form.confirm_password.pattern = this.value;"
                     required
                   />
                 </div>

@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email_address = trim($_POST["email_address"]);
     $password = trim($_POST["password"]);
 
-    $sql = "SELECT first_name, last_name, email_address, password FROM user_account_data WHERE email_address = ?";
+    $sql = "SELECT student_number, first_name, last_name, email_address, contact_number, password FROM user_account_data WHERE email_address = ?";
 
     if ($stmt = $mysqli->prepare($sql)) {
         $stmt->bind_param("s", $param_email_address);
@@ -23,9 +23,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if ($stmt->num_rows == 1) {
                 $stmt->bind_result(
+                    $student_number,
                     $first_name,
                     $last_name,
                     $email_address,
+                    $contact_number,
                     $hashed_password
                 );
 
@@ -34,9 +36,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         session_start();
 
                         $_SESSION["loggedin"] = true;
+                        $_SESSION["student_number"] = $student_number;
                         $_SESSION["first_name"] = $first_name;
                         $_SESSION["last_name"] = $last_name;
-                        $_SESSION["email_address"] = $last_name;
+                        $_SESSION["email_address"] = $email_address;
+                        $_SESSION["contact_number"] = $contact_number;
                         $_SESSION["password"] = $hashed_password;
 
                         header(

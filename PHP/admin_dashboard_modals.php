@@ -557,7 +557,7 @@
                 class="form-control form-control-md"
                 type="password"
                 placeholder="Enter Password"
-
+                onchange="if(this.checkValidity()) form.confirm_password.pattern = this.value;"
               />
             </div>
             <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 mt-2 mb-2">
@@ -568,7 +568,7 @@
                 class="form-control form-control-md"
                 type="password"
                 placeholder="Enter Confirm Password"
-
+                onchange="if(this.checkValidity()) form.confirm_password.pattern = this.value;"
               />
             </div>
           </div>
@@ -1113,6 +1113,7 @@
                 class="form-control form-control-md"
                 type="password"
                 placeholder="Enter Password"
+                onchange="if(this.checkValidity()) form.confirm_password.pattern = this.value;"
                 required
               />
             </div>
@@ -1124,6 +1125,7 @@
                 class="form-control form-control-md"
                 type="password"
                 placeholder="Enter Confirm Password"
+                onchange="if(this.checkValidity()) form.confirm_password.pattern = this.value;"
                 required
               />
             </div>
