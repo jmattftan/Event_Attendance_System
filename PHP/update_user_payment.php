@@ -14,27 +14,28 @@ include "database.php";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user_payment_id = trim($_POST["update_user_payment_id"]);
     $event_purchaser = trim($_POST["update_event_purchaser"]);
-    $event_name = trim($_POST["update_event_name_user_payment"]);
+    $event_id = trim($_POST["update_event_id_user_payment"]);
+    $attendance = trim($_POST["update_attendance"]);
 
-    $sql = "UPDATE user_payment_data SET event_purchaser = '$event_purchaser', event_name = '$event_name' WHERE user_payment_id = $user_payment_id";
+    $sql = "UPDATE user_payment_data SET event_purchaser = '$event_purchaser', event_id = '$event_id', attendance = '$attendance' WHERE user_payment_id = $user_payment_id";
     $query_run = mysqli_query($mysqli, $sql);
 
     if($query_run){
 
-        $sql_two = "SELECT * FROM event_data WHERE event_name = '$event_name'";
+        $sql_two = "SELECT * FROM event_data WHERE event_id = '$event_id'";
         $result = $mysqli->query($sql_two);
 
         if ($result->num_rows > 0) {
         // output data of each row
         while ($row = $result->fetch_assoc()) {
-        $event_id = $row["event_id"];
+        $event_name = $row["event_name"];
         $amount = $row["event_cost"];
         }
         } else {
         echo "0 results";
         }        
 
-        $sql_three = "UPDATE user_payment_data SET event_id = '$event_id', amount = '$amount' WHERE user_payment_id = $user_payment_id";
+        $sql_three = "UPDATE user_payment_data SET event_name = '$event_name', amount = '$amount' WHERE user_payment_id = $user_payment_id";
         $query_run_two = mysqli_query($mysqli, $sql_three);
 
         $mysqli->query("SET @num := 0;");

@@ -205,11 +205,10 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                         <td><?php echo $event_updated; ?></td>
                         <td style="display: none"><?php echo $event_description; ?></td>
                         <td class="d-flex justify-content-center">
-                          <button
+                          <a
                             class="btn btn-dark bi bi-people-fill event_attendance_button_action ms-1 me-1"
-                            data-bs-target="#Event_Attendance_ModalToggle"
-                            data-bs-toggle="modal"
-                          ></button>
+                            href="http://127.0.0.1:1912/Event_Attendance_System/event_attendance.php?event_id=<?php echo $event_id ?>"
+                          ></a>
                           <button
                             class="btn btn-dark bi bi-gear-fill update_event_button_action ms-1 me-1"
                             data-bs-target="#Update_Event_ModalToggle"
@@ -360,6 +359,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                         <th>Payment Method</th>
                         <th>Date of Purchase</th>
                         <th>User Payment Updated</th>
+                        <th>Attendance</th>
                         <th>Action</th>
                       </tr>
                     </thead>
@@ -379,6 +379,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                            $payment_method = $row["payment_method"];
                            $date_of_purchase = $row["date_of_purchase"];
                            $user_payment_updated = $row["user_payment_updated"];
+                           $attendance = $row["attendance"];
                            ?>
                       <tr>
                         <td><?php echo $user_payment_id; ?></td>
@@ -389,6 +390,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                         <td><?php echo $payment_method; ?></td>
                         <td><?php echo $date_of_purchase; ?></td>
                         <td><?php echo $user_payment_updated; ?></td>
+                        <td><?php echo $attendance; ?></td>
                         <td class="d-flex justify-content-center">
                           <div class="text-center">
                             <button

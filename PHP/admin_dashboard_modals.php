@@ -8,11 +8,21 @@
 >
   <div class="modal-dialog modal-xl modal-dialog-centered">
     <div class="modal-content">
+      <form
+        action="http://127.0.0.1:1912/Event_Attendance_System/PHP/update_event.php"
+        id="update_event_form"
+        method="POST"
+      >
         <div class="modal-body bg-dark">
           <div class="row">
             <h2 class="mt-3 mb-3 ms-2 ">Update Event</h2>
           </div>
           <div class="row mt-3 mb-2">
+              <input
+                id="update_event_id_event"
+                name="update_event_id_event"
+                style="display: none"
+              />   
             <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 mt-2 mb-2">
               <label class="mb-1 ms-2">Event Name</label>
               <input
@@ -162,12 +172,14 @@
           class="btn btn-dark delete_event_button_action d-flex justify-content-between align-items-center"
           data-bs-target="#Delete_Event_ModalToggle2"
           data-bs-toggle="modal"
+          type="button"
         >
           <span>Delete Event</span>
           <span class="ms-1 bi bi-arrow-right-circle"></span>
         </button>
-        <button type="button" class="btn btn-dark">Save Changes</button>
+        <button type="submit" class="btn btn-dark">Save Changes</button>
       </div>
+      </form>
     </div>
   </div>
 </div>
@@ -180,6 +192,11 @@
 >
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
+      <form
+        action="http://127.0.0.1:1912/Event_Attendance_System/PHP/delete_event.php"
+        id="delete_event_form"
+        method="POST"
+      >
       <div class="modal-body bg-dark">
         <div class="row">
           <h2 class="mt-3 mb-3 ms-2 ">Delete Event</h2>
@@ -195,8 +212,9 @@
         >
           Update Event
         </button>
-        <button type="button" class="btn btn-danger">Delete Event</button>
+        <button type="submit" class="btn btn-danger">Delete Event</button>
       </div>
+    </form>
     </div>
   </div>
 </div>
@@ -286,7 +304,7 @@
     <div class="modal-content">
       <form
         action="http://127.0.0.1:1912/Event_Attendance_System/PHP/update_user_payment.php"
-        id="update_admin_form"
+        id="update_user_payment_form"
         method="POST"
       >       
         <div class="modal-body bg-dark">
@@ -333,14 +351,14 @@
               </select>
             </div>
             <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-2 mb-2">
-              <label class="mb-1 ms-2">Choose Event Name</label>
+              <label class="mb-1 ms-2">Choose Event</label>
               <select
-                id="update_event_name_user_payment"
-                name="update_event_name_user_payment"
+                id="update_event_id_user_payment"
+                name="update_event_id_user_payment"
                 class="form-select"
                 required
               >
-                <option selected hidden>Choose Event Name</option>
+                <option selected hidden>Choose Event</option>
                 <?php
                 $sql = "SELECT * FROM event_data";
                 $result = $mysqli->query($sql);
@@ -348,12 +366,20 @@
                 if ($result->num_rows > 0) {
                     // output data of each row
                     while ($row = $result->fetch_assoc()) {
-                        $event_name = $row["event_name"]; ?>
-                <option value="<?php echo $event_name; ?>"><?php echo $event_name; ?></option>
+                        $event_id = $row["event_id"]; ?>
+                <option value="<?php echo $event_id; ?>"><?php echo $event_id; ?></option>
                 <?php
                     }
                 }
                 ?>
+              </select>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-2 mb-2">
+              <label class="mb-1 ms-2">Attendance</label>
+              <select id="update_attendance" name="update_attendance" class="form-select" required>
+                <option selected hidden>Choose</option>
+                <option value="Present">Present</option>
+                <option value="Absent">Absent</option>
               </select>
             </div>
           </div>
@@ -385,7 +411,7 @@
     <div class="modal-content">
       <form
         action="http://127.0.0.1:1912/Event_Attendance_System/PHP/delete_user_payment.php"
-        id="update_admin_form"
+        id="delete_user_payment_form"
         method="POST"
       >        
       <div class="modal-body bg-dark">
@@ -598,7 +624,7 @@
 </div>
 <!--End Modal Admin Account-->
 
-<!--Start Modal Event Attendace-->
+<!--Start Modal Event Attendance
 <div
   class="modal fade text-dark"
   id="Event_Attendance_ModalToggle"
@@ -619,7 +645,10 @@
           aria-label="Close"
         ></button>
       </div>
-      <div class="modal-body">Event Attendance</div>
+      <div class="modal-body">
+        <input type="text" id="sample_1">
+        <input type="text" id="sample_2">
+      </div>
       <div class="modal-footer">
         <button
           type="button"
@@ -633,7 +662,7 @@
     </div>
   </div>
 </div>
-<!--End Modal Event Attendance-->
+-->
 
 <!--Start Modal Events to Handle
 <div
@@ -934,14 +963,14 @@
               </select>
             </div>
             <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-2 mb-2">
-              <label class="mb-1 ms-2">Choose Event Name</label>
+              <label class="mb-1 ms-2">Choose Event</label>
               <select
-                id="event_name_user_payment"
-                name="event_name_user_payment"
+                id="event_id_user_payment"
+                name="event_id_user_payment"
                 class="form-select"
                 required
               >
-                <option selected hidden>Choose Event Name</option>
+                <option selected hidden>Choose Event</option>
                 <?php
                 $sql = "SELECT * FROM event_data";
                 $result = $mysqli->query($sql);
@@ -949,8 +978,8 @@
                 if ($result->num_rows > 0) {
                     // output data of each row
                     while ($row = $result->fetch_assoc()) {
-                        $event_name = $row["event_name"]; ?>
-                <option value="<?php echo $event_name; ?>"><?php echo $event_name; ?></option>
+                        $event_id = $row["event_id"]; ?>
+                <option value="<?php echo $event_id; ?>"><?php echo $event_id; ?></option>
                 <?php
                     }
                 }

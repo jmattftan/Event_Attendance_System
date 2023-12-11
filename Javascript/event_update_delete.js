@@ -17,7 +17,7 @@ $(document).ready(function () {
       event_description: tds.eq(12).text(),
     };
 
-    $("#update_event_id").val(data.event_id);
+    $("#update_event_id_event").val(data.event_id);
     $("#update_event_name_event").val(data.event_name);
     $("#update_event_type").val(data.event_type);
     $("#update_event_date").val(data.event_date);

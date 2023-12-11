@@ -9,15 +9,25 @@ include "database.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $event_purchaser = trim($_POST["event_purchaser"]);
-    $event_name = trim($_POST["event_name_user_payment"]);
+    $event_id = trim($_POST["event_id_user_payment"]);
 
-    $sql = "SELECT * FROM event_data WHERE event_name = '$event_name'";
+    if ($result->num_rows > 0) {
+    // output data of each row
+    while ($row = $result->fetch_assoc()) {
+        $event_name = $row["event_name"];
+        $amount = $row["event_cost"];
+    }
+    } else {
+    echo "0 results";
+    }    
+
+    $sql = "SELECT * FROM event_data WHERE event_id = '$event_id'";
     $result = $mysqli->query($sql);
 
     if ($result->num_rows > 0) {
     // output data of each row
     while ($row = $result->fetch_assoc()) {
-        $event_id = $row["event_id"];
+        $event_name = $row["event_name"];
         $amount = $row["event_cost"];
     }
     } else {
@@ -34,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user_payment_id = $seconds.$year.$month.$day.$hour.$minute;
 
     $payment_method = "Cash";
-    $attendance = 0;
+    $attendance = "None yet";
 
     $sql = "INSERT INTO user_payment_data (user_payment_id, event_purchaser, event_id, event_name, amount, payment_method, attendance) VALUES ('$user_payment_id', '$event_purchaser', '$event_id', '$event_name', '$amount', '$payment_method', '$attendance')";
     $query_run = mysqli_query($mysqli, $sql);
